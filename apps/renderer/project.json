@@ -7,12 +7,12 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
+      "executor": "@angular-devkit/build-angular:browser-esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/renderer",
         "index": "apps/renderer/src/index.html",
-        "browser": "apps/renderer/src/main.ts",
+        "main": "apps/renderer/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/renderer/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
@@ -54,7 +54,11 @@
           "buildTarget": "renderer:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/renderer/proxy.conf.json",
+        "port": 5100
+      }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
